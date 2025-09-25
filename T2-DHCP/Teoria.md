@@ -26,7 +26,7 @@ Las principales ventajas de utilizar DHCP son, por un lado, evitar conflictos de
 La concesión dinámica de direcciones IP y otros parámetros de configuración de red se realiza por un periodo de tiempo determinado, que varía en función de las necesidades del cliente y del servidor.
 
     
-    El servicio DHCP simplifica la administración de la configuración de los equipos de red haciéndola centralizada, dinámica y con concesiones por periodos de tiempos finitos.
+>El servicio DHCP simplifica la administración de la configuración de los equipos de red haciéndola centralizada, dinámica y con concesiones por periodos de tiempos finitos.
 
 
 >Ejemplos de uso del servicio DHCP
@@ -44,7 +44,7 @@ La concesión dinámica de direcciones IP y otros parámetros de configuración 
 Cualquier equipo que pertenece en una red requiere que se configure con unos parámetros mínimos, que son la **dirección IP**, la **máscara** y la **puerta de enlace** por defecto (también llamada *gateway*). 
 La dirección IP identifica el equipo de manera única y la máscara permite determinar la red o subred en que se encuentra el equipo. Con estos dos parámetros hay bastante para tener conectividad en la red. Si se quiere disponer de acceso fuera de la red propia (por ejemplo, a Internet o al resto de la red corporativa) hay que definir también el router o gateway. Aparte de la configuración básica, los equipos pueden necesitar (de hecho, lo necesitan) más parámetros de configuración, como, por ejemplo, el nombre del hueste, los servidores DNS a usar, el fichero de iniciación para arranques PXE…
 
-    Todo equipo de red necesita disponer de una dirección IP que lo identifique de manera única en la red. Le hace falta también una máscara para poder distinguir en la dirección IP la parte de dirección de red y la de dirección de hueste. Finalmente, es imprescindible disponer de la dirección de la puerta de enlace predeterminada o pasarela por defecto (gateway), para disponer de acceso a redes externas.
+>Todo equipo de red necesita disponer de una dirección IP que lo identifique de manera única en la red. Le hace falta también una máscara para poder distinguir en la dirección IP la parte de dirección de red y la de dirección de hueste. Finalmente, es imprescindible disponer de la dirección de la puerta de enlace predeterminada o pasarela por defecto (gateway), para disponer de acceso a redes externas.
 
 
 >**Ejemplo de configuración de red de un equipo doméstico**
@@ -67,7 +67,7 @@ La dirección IP identifica el equipo de manera única y la máscara permite det
 
 Este proceso de configuración hace falta que se haga para cada equipo de la red. Hacerlo manualmente implica configurar equipo por equipo sin cometer errores al teclear las direcciones y las máscaras. Cualquier cambio en la estructura de la red, como por ejemplo redefinir las subredes o modificar algunas direcciones IP, significa volver a configurar manualmente los equipos implicados. Es evidente que todo este trabajazo no es agradable para el administrador de red (es muy aburrida!). Tanto si la red corporativa consta de pocos equipos como de muchos, hace falta una solución que permita automatizar la configuración de red de cada equipo de manera centralizada.
 
-    Las opciones de configuración de red se pueden asignar a cada equipo estáticamente o se pueden configurar de manera dinámica utilizando DHCP.
+>Las opciones de configuración de red se pueden asignar a cada equipo estáticamente o se pueden configurar de manera dinámica utilizando DHCP.
 
 
 Como administradores de red, la gestión centralizada que proporciona DHCP nos permite modificar la red añadiendo, eliminando y redefiniendo equipos con un coste mínimo.
@@ -75,19 +75,19 @@ Como administradores de red, la gestión centralizada que proporciona DHCP nos p
 ## Tipos de asignaciones de direcciones IP
 Cada equipo de red tiene asignada una dirección IP que lo identifica de manera única dentro de la red. La composición de la dirección IP y la máscara determinan la red o subred a la cual pertenece. Además, se configuran otros parámetros de red como la puerta de enlace predeterminada, servidores DNS… Esto se puede configurar manualmente yendo equipo por equipo e introduciendo esta información.
 
-    Cuando la dirección IP y los otros parámetros necesarios de configuración de la red se configuran equipo por equipo, manualmente, se llama que tienen una dirección IP estática.
+>Cuando la dirección IP y los otros parámetros necesarios de configuración de la red se configuran equipo por equipo, manualmente, se llama que tienen una dirección IP estática.
 
 Cuando la configuración de red de un equipo no se hace manualmente y localmente en el equipo sino que se hace por medio de un servidor DHCP, se llama que el equipo utiliza una **dirección IP dinámica**. Para realizar configuraciones de red dinámicamente harán falta uno o más servidores DHCP (a manera de redundancia), que proporcionarán la configuración a los equipos clientes (los que hay que configurar). Por lo tanto, será una estructura cliente/servidor. Las direcciones IP dinámicas que recibe el cliente las podemos clasificar en dos categorías: **asignación dinámica de rango** y **asignación fija**.
 
 El servidor DHCP dispone de un rango de direcciones que puede asignar a los clientes que piden una dirección IP. Cuando el servidor asigna una dirección cualquiera del rango al cliente (al azar) se trata de una asignación dinámica de rango. El cliente no sabe qué dirección IP tendrá y no hay manera de predecir qué se le concederá en una futura configuración. A cada nueva asignación, la dirección IP puede ser diferente.
 
->MAC
+>**MAC**
 >
 >Cada interfaz de red se identifica de manera única físicamente por la dirección MAC (media access control o dirección de acceso al medio).
 
 Una asignación fija se produce cuando el servidor DHCP asigna siempre la misma dirección al cliente. Para asignar siempre la misma dirección IP al cliente hace falta que el servidor pueda identificar inequívocamente el cliente (por la dirección MAC). El servidor dispone de una mesa con las correspondencias entre las direcciones MAC y las direcciones IP fijas.
 
-    Cuando la configuración de red de un equipo se hace por medio de un servidor DHCP se llama que utiliza una dirección IP dinámica. Esta dirección puede variar dentro de un rango de direcciones disponibles del servidor DHCP o puede ser fija.
+>Cuando la configuración de red de un equipo se hace por medio de un servidor DHCP se llama que utiliza una dirección IP dinámica. Esta dirección puede variar dentro de un rango de direcciones disponibles del servidor DHCP o puede ser fija.
 
 >**DNS dinámico**
 >
@@ -107,11 +107,11 @@ El protocolo DHCP está descrito, como la mayoría de protocolos de red, por un 
 
 El servicio DHCP es un servicio del tipo cliente/servidor que proporciona la configuración de red a los clientes que lo solicitan. Proporciona los parámetros básicos de red como la dirección IP, la máscara de red, la puerta de enlace y otros parámetros necesarios para la conexión en una red IP. Se trata de un protocolo de la capa de aplicación del modelo TCP/IP.
 
-    El protocolo DHCP está basado en la arquitectura de servicios cliente/servidor y utiliza como transporte el protocolo UDP de la pila de protocolos TCP/ IP. El servidor DHCP se comunica con los clientes utilizando paquetes UDP, que recibe en su puerto 67 y envía al puerto 68 del cliente.
+>El protocolo DHCP está basado en la arquitectura de servicios cliente/servidor y utiliza como transporte el protocolo UDP de la pila de protocolos TCP/ IP. El servidor DHCP se comunica con los clientes utilizando paquetes UDP, que recibe en su puerto 67 y envía al puerto 68 del cliente.
 
 La configuración dinámica de equipos de red se inició con el protocolo BOOTP (BOOT Strap Protocolo o protocolo de arranque). Era un protocolo más básico que principalmente permitía definir la dirección IP, la máscara de red y la pasarela por defecto para el cliente. El BOOTP (RFC 951, año 1985) es un protocolo pensado para proporcionar automáticamente la IP a clientes de red en el proceso de arranque. Originariamente se utilizaba para estaciones de trabajo sin disco que obtenían la configuración de red del protocolo BOOTP y también obtenían el nombre de un fichero de arranque que se tenía que bajar por medio del TFTP, que usualmente era el sistema operativo.
 
->RFC del DHCP
+>**RFC del DHCP**
 >
 >Principales RFC dedicados al DHCP:
 >
@@ -237,7 +237,7 @@ El cliente puede decidir renunciar a la concesión en cualquier momento. Si el c
 
 - **Reservas**: denominamos reservas aquellas direcciones IP que se asignan por DHCP pero de manera fija. Es decir, son direcciones que se asignan dinámicamente pero siempre y únicamente a un hueste determinado. Fijaos que a pesar de ser una dirección dinámica solo se utiliza si el hueste asociado hace uso. Si el hueste está apagado, la dirección no se puede usar para otras huestes, está reservada.
 
-Un ejemplo de rango:
+### Un ejemplo de rango:
 
 ```
 subnet 140.220.191.0 netmask 255.255.255.0 {
@@ -249,3 +249,66 @@ subnet 239.252.197.0 netmask 255.255.255.0 {
             range 239.252.197.113 239.252.197.250;
 }
 ```
+
+Se puede ver que la primera subred tiene un rango de 101 direcciones dinámica comprendida entre 150 y 250. La segunda subred permite asignar dos rangos de direcciones no correlativos. 
+
+### Un ejemplo de reserva
+
+```
+subnet 140.220.191.0 netmask 255.255.255.0 {
+       host asirserver {
+           hardware ethernet 08:00:2b:4c:59:23;
+           fixed-address 140.220.191.1;
+       }
+      range 140.220.191.150 239.252.197.250;
+       }
+```
+
+140.220.191.1 es una dirección reservada exclusivamente para el host asirserver.
+
+## DHCP, en cliente-servidor
+
+El servicio DHCP es un más de los servicios de red que tienen la estructura cliente/servidor. Los servidores DHCP son los equipos que tienen en ejecución el programa servidor. Es el programa encargado de atender las peticiones de los clientes y ofrecerles la configuración de red, llevando el registro de las IP que concede y de todas las acciones que realiza. Los clientes DHCP son aquellos equipos que realizan peticiones a un servidor DHCP para obtener una configuración de red.
+
+> ISP: Proveedor de Servicio de Internet
+
+### Cliente DHCP
+
+Un equipo cliente DHCP es un equipo que solicita la dirección IP y otros parámetros de configuración de red a un servidor DHCP en lugar de tenerlos definidos localmente en el equipo.
+
+Si conectáis vuestro equipo informático en la red Internet por medio de un ISP (*Internet service provider* o proveedor de acceso a Internet), seguramente recibiréis una IP dinámica de vuestro proveedor. Cuando se realizaba una llamada telefónica con módem y usando el protocolo PPP (Point tono Point Protocolo o protocolo punto a punto), el proveedor proporcionaba una dirección IP dinámica. Si utilizáis ADSL y un *router*, seguramente el router os proporciona una dirección IP dinámica privada al ordenador de casa. Al mismo tiempo, el router obtiene una dirección IP dinámica pública del proveedor. Estas direcciones IP dinámicas son fijas (siempre las mismas) o dinámicas de rango (puede ser cualquier dirección IP del conjunto de direcciones IP que tiene disponibles para conceder el servidor DHCP).
+
+>**El router: servidor y cliente DHCP**
+>
+>Un caso típico en una red privada a casa es disponer de un router ADSL conectado a un proveedor ISP. El router actúa como cliente DHCP en su interfaz de red pública (la del ADSL), la que conecta en Internet.
+>
+>A la vez, el router hace usualmente de servidor DHCP para los ordenadores de casa proporcionándolos una dirección IP. En general los ordenadores de los usuarios se configuran como clientes DHCP.
+
+
+El cliente DHCP tiene que tener en funcionamiento un demonio encargado de la gestión de las tareas DHCP propias del cliente. Realiza la parte de negociación encargada al cliente (*DHCP discovery, request*) y también lleva un registro de las concesiones (leases) recibimientos. Este registro es el que utiliza el cliente para volver a pedir la misma IP que tenía anteriormente. Una vez recibida la concesión, lo programa cliente queda “dormido”, pendiente de volverse a ejecutar automáticamente cuando haya que renegociar la concesión. Sin intervención del usuario, lo programa cliente se activa y sigue el procedimiento necesario para renegociar la dirección IP cada vez que el tiempo de la concesión se agota.
+
+>**Configuración cliente**
+>
+>Usualmente, las configuraciones cliente se pueden hacer de tres maneras diferentes:
+>
+>- Fichero de texto: editar directamente los ficheros de configuración.
+>- Menús en modo texto: usando algún programa de menús con interfaz de texto.
+>- Aplicación gráfica: usando una aplicación de ventanas en el entorno gráfico.
+
+Los programes cliente varían de un sistema operativo a otro y la manera de ejecutarlos también. Generalmente se dispone de un cliente ejecutable en modo texto o órdenes y de una interfaz gráfica (GUI, *graphics user interface* o interfaz gráfica de usuario) para la configuración. No hay que decir que los sistemas Windows tienden a la configuración gráfica usando ventanas y a la configuración y ejecución interna a escondidas del usuario. Normalmente, en los sistemas GNU/Linux la configuración se hace usando ficheros de texto u opciones que se dan a órdenes ejecutables. La interfaz gráfica acostumbra a ser un frontend para gritar la orden. Según sea el sistema operativo se puede consultar el fichero de registro de las concesiones recibidas por el cliente, el fichero de leases, más o menos en detalle.
+
+Generalmente, lo programa cliente se puede configurar para definir como se comunicará con el servidor: información a pedir, información a proporcionar al servidor, opciones por defecto…
+
+### Servidor DHCP
+
+El administrador de red es el encargado de pensar la ubicación del servidor o servidores DHCP en la estructura corporativa. Cuanto más complicada sea la topología de la red, más difícil será la gestión. Una red corporativa básica puede disponer de un único servidor DHCP que ofrece sus servicios a todos los equipos de la red. Los clientes pueden estar en una misma subred o en varias subredes, pero todas con conectividad con el servidor DHCP. Este también puede ser el esquema de una red privada a casa, donde un router (lo del ISP, por ejemplo) proporciona el servicio DHCP a todos los ordenadores de la casa.
+
+Si la red corporativa crece y pasa a tener subredes segmentadas con cortafuegos, la configuración del servidor DHCP se complica. Si se quiere continuar disponiendo de un único servidor para toda la red, hará falta que los cortafuegos (firewalls) dejen pasar los paquetes DHCP entre las subredes y el servidor. Otra opción es poner un servidor DHCP para cada subred o grupos de subredes. Haciéndolo así, la administración de cada servidor es más sencilla, pero hay más servidores a administrar. Una red con una casuística completa es la que tiene varios servidores DHCP para varias partes de la red y cortafuegos entre clientes y servidores que tienen que permitir el paso de paquetes DHCP.
+
+Si el servidor DHCP es el encargado de dar direcciones IP a los clientes, quién le proporciona una dirección IP a él? Lo hace o bien otro servidor DHCP (y podríamos volver a hacer la misma pregunta indefinidamente) o bien el administrador. Usualmente, en una red corporativa el servidor DHCP utiliza una IP estática definida por el administrador. Esto le permite estar siempre disponible para los clientes con la misma IP y no lo hace depender de un servidor externo.
+
+Hay varios programas servidores DHCP que se pueden clasificar en dos grandes grupos: los que trabajan en modo texto y los que lo hacen en modo gráfico. Cada administrador trabaja con sus herramientas preferidas. Las tareas básicas para aprender a utilizar un servidor DHCP son: observar, hacer una lista de la configuración actual, activar/parar el servicio, modificar la configuración, monitorizar los logs (registro de sucesos del servicio) y, evidentemente, saber instalar y desinstalar la aplicación servidor.
+
+Como la mayoría de servicios de red, el servicio DHCP se ejecuta en segundo plan en forma de demonio. El servidor DHCP siempre está puesto en marcha escuchando en el puerto 67 las peticiones que recibe de los clientes. Cuando recibe una petición entrante, el programa ejecutable del servidor DHCP la procesa y pone en marcha todo el mecanismo DHCP pertinente para volver a escuchar nuevas peticiones. De hecho, el servidor siempre escucha peticiones y las procesa simultáneamente (según la configuración).
+
+Los ficheros del registro del servicio, donde se anotan las concesiones, mantienen la información aunque el servicio se pare o que el servidor se apague. Al volver a ponerlo en marcha se leerán de nuevo los ficheros de registros para saber cuáles son las concesiones que se habían realizado.
