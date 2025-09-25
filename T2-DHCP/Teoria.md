@@ -206,3 +206,46 @@ En cualquier momento el cliente puede solicitar más información sobre la confi
 El proceso de cuatro fases usuales de DHCP consistente en *discovery / offer / request / ack* se produce cuando el cliente solicita una dirección IP de nuevo. Sabemos que las concesiones son por un intervalo de tiempo finito, pasado el cual hace falta que el cliente pida la renovación. Existe, pues, un proceso de renovación simplificado. El cliente pide continuar usando la misma dirección IP con un paquete DHCP request y el servidor le concede o no con los paquetes DHCP ACK/*NACK.
 
 Otro caso es un cliente que pide usar (renovar) una dirección IP que el servidor no le puede conceder (está en uso, no es del rango que gestiona…). En esta situación, el servidor envía un DHCP NACK.
+
+## Ataques al funcionamiento del DHCP
+
+Como cualquier otro servicio de red, el servidor DHCP es susceptible de sufrir ataques malintencionados. El ataque más fácil y clásico es el DDOS o denegación de servicio. Consiste a inundar de peticiones un servidor para saturarlo y bloquear su funcionamiento. Un cliente puede realizar varias peticiones DHCP discovery fingiendo que son clientes diferentes (enmascarando su MAC) con la intención de agotar las direcciones IP disponibles del servidor o simplemente con la intención de sobrecargarlo con tantas peticiones que no dé al alcance a atenderlas o que lo haga lentamente.
+
+Otro tipo de ataque consiste en falsear la información que se envía al cliente. El cliente hace una solicitud de IP en forma de difusión (broadcast) y su petición puede ser atendida por uno o más servidores DHCP. Uno de esos servidores puede ser un atacante que intenta proporcionar información de configuración falsa al cliente, por ejemplo, indicando un servidor DNS también malicioso. Este puede falsear las identidades de las máquinas de la red y que cuando el cliente se dirija a su entidad bancaria el servidor DNS en realidad le proporcione una IP de una máquina que falsea la de la entidad bancaria.
+
+### Tipo de ataques DNS
+
++ Clientes no autorizados: acceso a servidores DNS por parte de clientes no autorizados.
++ Servidores no autorizados: servidores DNS impostores que suplantan los verdaderos servidores.
+
+## Conflictos con las direcciones IP
+
+Uno de los principales motivos para utilizar DHCP es simplificar el proceso de configuración de red y minimizar los conflictos con las direcciones IP. Por desgracia, esto no garantiza que no se puedan producir conflictos. Por ejemplo, nos podemos encontrar en situaciones en que dos máquinas diferentes tengan la misma IP por una simple mala configuración del servidor DHCP. Otro caso típico es el de un cliente que se ha configurado él mismo una IP estática cuando en la red ya había un equipo que utilizaba la misma dirección IP asignada por el servidor DHCP.
+
+Un problema habitual para los administradores poco experimentados es definir una configuración de red local al cliente (hostname, servidor DNS, puerta de enlace a utilizar…), pero pedir la dirección IP dinámicamente. La configuración dinámica no es solo la IP y la máscara sino que el servidor DHCP puede proporcionar otros parámetros de red que sobrescribirán los que el cliente tenía definidos localmente (este es el objetivo del DHCP!).
+
+## Rangos y concesiones
+
+Los clientes DHCP obtienen del servidor una configuración de red. Describimos ahora algunos de los términos que aparecen en este proceso y que forman parte de la configuración DHCP.
+
+- **Rango**: denominan rango de direcciones IP el conjunto de direcciones dinámicas que el servidor tiene disponibles para asignar a los clientes. Las direcciones IP disponibles se agrupan para ofrecerse a las diversas subredes que atiende el servidor. Una misma subred puede disponer de varios rangos.
+
+- **Exclusiones**: entendemos por exclusiones aquellas direcciones IP que no se ofrecen dinámicamente por parte del servidor. Es decir, que no forman parte de ningún rango.
+- **Concesiones**: la asignación de una dirección IP y el resto de parámetros de red a un cliente por parte del servidor es una concesión o lease. Los clientes reciben las concesiones por periodos de tiempos finitos que, al finalizar, hay que renegociar. Tanto el cliente como el servidor se anotan las concesiones, el cliente la que recibe y el servidor las que concede. Cuando finaliza una concesión, el servidor puede decidir revocarla o ampliarla.
+
+El cliente puede decidir renunciar a la concesión en cualquier momento. Si el cliente quiere alargar la concesión inicia un diálogo DHCP abreviado con el servidor que puede acabar con una renovación o con la pérdida de la concesión (siempre puede volver a empezar el proceso). Tanto el servidor como el cliente miran normalmente las concesiones que se han efectuado entre ellos con anterioridad para, si es posible, repetir la misma asignación.
+
+- **Reservas**: denominamos reservas aquellas direcciones IP que se asignan por DHCP pero de manera fija. Es decir, son direcciones que se asignan dinámicamente pero siempre y únicamente a un hueste determinado. Fijaos que a pesar de ser una dirección dinámica solo se utiliza si el hueste asociado hace uso. Si el hueste está apagado, la dirección no se puede usar para otras huestes, está reservada.
+
+Un ejemplo de rango:
+
+```
+subnet 140.220.191.0 netmask 255.255.255.0 {
+            range 140.220.191.150 239.252.197.250;
+}
+
+subnet 239.252.197.0 netmask 255.255.255.0 {
+            range 239.252.197.10 239.252.197.107;
+            range 239.252.197.113 239.252.197.250;
+}
+```
