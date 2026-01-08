@@ -1,8 +1,8 @@
 # DHCP
 
-> DHCP es el acrónimo de Dynamic Host Configuration Protocol o en castellano protocolo de configuración de host dinámica.
+> DHCP es el acrónimo de *Dynamic Host Configuration Protocol* o en castellano protocolo de configuración de host dinámica.
 
-El servicio DHCP permite la configuración de direcciones IP, máscaras, pasarelas por defecto (gateways) y otras muchas opciones de configuración de manera totalmente dinámica.
+El servicio DHCP permite la configuración de direcciones IP, máscaras, gateways y otras muchas opciones de configuración de forma dinámica.
 
 Una manera sencilla de entender el DHCP es imaginar que, al arrancar, los equipos clientes gritan por la red varias preguntas. El servidor del DHCP los contesta proporcionando toda la información necesaria para que sepan que equipo son y como tienen que configurar sus parámetros de red.
 
