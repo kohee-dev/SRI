@@ -14,7 +14,7 @@ Define *DNSSEC* y *DoH*, que ventajas tienen, si tuviesen alguna desventaja, ind
 
 ¿Que riesgos puede haber si no actualizamos frecuentemente nuestro servidor DNS? ¿Y si permitimos la resolución recursiva?
 
-En las redes creadas previamente configura el filtrado MAC.
+En las redes creadas previamente configura DNS para que funcione junto a DHCP.
 
 ## Mail
 
